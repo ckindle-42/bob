@@ -4,6 +4,25 @@ All notable changes to B.O.B (Better Output Builder) are documented here.
 
 ---
 
+## [7.0] — 2026-02-25
+
+### Added
+- **REFINE mode** — New third operating mode. User pastes the original Nuclear Prompt + downstream AI output + what was wrong or missing. B.O.B diagnoses the failure (template mismatch, constraint gap, scope drift, etc.), rebuilds the prompt with targeted fixes, and annotates every change.
+- **Persona + Behavioral Constraint template** — 13th template. Covers conversational AI, customer service bots, tutoring assistants, branded personas, and roleplay scenarios where tone, personality, and behavioral guardrails matter more than structured output.
+- **Risk-Aware Escalation** — When Layer 1 detects domain risk = high or critical and mode = BASIC, B.O.B prepends an advisory recommending DETAIL mode before delivering the Nuclear Prompt.
+
+### Changed
+- **Layer 3 rebuilt as Capability-Aware Optimization** — Replaced hardcoded model-name/version pairs with five durable capability profiles (Deep Reasoning + Large Context, Constrained/Fast Reasoning, Code/Format Precision, Multimodal/Planning, Agentic/Tool-Use Native). Optimization logic now keys off capabilities, not model names, making it valid across model generations. A model→profile mapping table is retained as a reference.
+- **Fusion replaced allowlist with rule-based system** — The fixed 5-stack allowlist is replaced by four composable rules (no contradictory structures, no redundant constraints, complementary phases, sub-600-word budget). Any combination satisfying all four rules is permitted, including Context Injection + Iterative Refinement, Agentic + Verification, and Persona + Iterative Refinement.
+- **Self-Score replaced by Compliance Check** — The `Self-Score (1–10)` block is removed from all templates. It is replaced with a structured **Compliance Check** that requires the downstream AI to explicitly confirm each HARD CONSTRAINT was met (Yes/No) and produce an **Uncertainty Log** listing any claim where confidence falls below 90%. This is verifiable; a numeric self-score is not.
+- **GLOBAL RULES — stateless rule rewritten** — Replaced the vague "Never store or reference past sessions" rule with a precise behavioral constraint: "When constructing prompts, operate in stateless mode. Do not reference, infer, or reuse prior session content unless the user explicitly re-supplies it within the current message. Memory is for downstream prompt execution, not for prompt construction." This distinguishes B.O.B's construction behavior from downstream model memory features.
+
+### Fixed
+- Layer 2 template mapping updated to include Persona + Behavioral Constraint for conversational/persona/tone-driven tasks.
+- FIRST MESSAGE and ALL SUBSEQUENT RESPONSES blocks updated to reflect v7.0 and the new REFINE mode flag.
+
+---
+
 ## [6.2] — 2026-02-25
 
 ### Fixed
