@@ -1,6 +1,6 @@
 # B.O.B — Better Output Builder
 
-**Version 7.2 TITANIUM+**
+**Version 7.3 TITANIUM+**
 
 B.O.B is an enterprise-grade, hallucination-resistant, capability-adaptive **prompt architect**. Paste the system prompt into any frontier AI model and it transforms your raw ideas into precision-engineered "Nuclear Prompts" — structured, unambiguous, copy-paste-ready instructions that another AI executes with maximum fidelity.
 
@@ -13,7 +13,7 @@ B.O.B is an enterprise-grade, hallucination-resistant, capability-adaptive **pro
 **The workflow is always three steps:**
 
 1. Open your preferred AI (Claude, GPT, Grok, Gemini, etc.)
-2. Paste the contents of `BOBv7.2.md` as the **system prompt**
+2. Paste the contents of `BOBv7.3.md` as the **system prompt**
 3. Describe what you want — B.O.B delivers a finished Nuclear Prompt
 4. **Copy the Nuclear Prompt → open a new chat → paste and run**
 
@@ -47,15 +47,15 @@ B.O.B is a **prompt factory**. It is stateless by design. The actual work always
 
 | Layer | Name | What It Does |
 |-------|------|-------------|
-| 1 | Intent Reconstruction | Extracts goal, audience, domain, risk level, output structure, and task type |
-| 2 | Complexity Grid + Template Selection | Maps request to optimal Nuclear Template; applies rule-based fusion when needed |
-| 3 | Capability-Aware Optimization | Adapts prompt structure to the target model's capability profile — durable across model generations |
+| 1 | Intent Reconstruction | Extracts goal, audience expertise level, domain, risk level, complexity tier, temporal sensitivity, output structure, and task type |
+| 2 | Complexity Grid + Template Selection | Maps request to optimal Nuclear Template; applies rule-based fusion when needed; scales prompt weight by complexity tier; generates prompt chains for compound tasks |
+| 3 | Capability-Aware Optimization | Adapts prompt structure to the target model's capability profile; applies response priming, reasoning depth control, anti-sycophancy directives, temporal grounding, and cognitive load management |
 | 4 | Titanium QA Shield | Ambiguity Scan + Safety & Consistency Scan + 5 deterministic Quality Gates before delivery |
 | 5 | Delivery | Nuclear Prompt + pattern rationale + capability-keyed Pro Tip |
 
 ---
 
-## Nuclear Template Library (13 Templates)
+## Nuclear Template Library (15 Templates)
 
 | Template | Best For |
 |----------|----------|
@@ -71,6 +71,8 @@ B.O.B is a **prompt factory**. It is stateless by design. The actual work always
 | **Constraint-First** | Regulated, compliance, or safety-critical environments |
 | **Multi-Perspective** | Decision-making, trade-off analysis |
 | **Persona + Behavioral Constraint** | Customer service bots, tutors, roleplay, branded assistants |
+| **Task Decomposition & Workflow Architecture** | Compound multi-phase tasks with dependencies between phases |
+| **Structured Data Output** | Strict machine-parseable output (JSON, XML, CSV, YAML) with schema enforcement |
 | **Meta-Prompt** | Tasks outside B.O.B's named templates, or open-ended goals with no clear template fit |
 
 ### Multi-Template Fusion
@@ -176,6 +178,12 @@ When you run a Nuclear Prompt and the output is wrong, paste it back to B.O.B wi
 | Scope creep | Unsolicited advice or out-of-scope content |
 | Template mismatch | Output style wrong for the task |
 | Hallucinated tool output | Tool results fabricated or assumed |
+| Sycophantic agreement | Model validates flawed premises; avoids pushback |
+| Shallow reasoning | Surface-level analysis; skips nuance; jumps to conclusions |
+| Temporal hallucination | Fabricates recent events; states outdated facts as current |
+| Audience mismatch | Output too technical for novices or too simplistic for experts |
+| Premature closure | Model stops before completing all requested items |
+| Instruction dilution | Early constraints followed but later ones ignored |
 
 ---
 
@@ -273,6 +281,9 @@ Compliance Check:
 - **Capability profiles are durable; model names are not.** The model→profile table will drift. Verify profile assignment for newly released models.
 - **B.O.B is stateless by design.** Each session starts fresh. To refine a previous Nuclear Prompt, paste it back in with the REFINE flag.
 - **Fusion increases complexity.** Fused prompts are more powerful but harder for weaker models to follow. If fusion output is inconsistent, simplify to a single template.
+- **Prompt chains add user friction.** Compound-tier prompt chains require running multiple conversations sequentially. Only generated when single-prompt approaches genuinely can't handle the task.
+- **Anti-sycophancy is not foolproof.** Models may still default to agreeable outputs despite explicit pushback instructions. Human critical thinking remains essential.
+- **Temporal grounding depends on known cutoffs.** B.O.B cannot always determine the exact knowledge cutoff of the target model.
 - **B.O.B is not a substitute for domain expertise.** In high/critical risk domains (legal, medical, safety-critical), Nuclear Prompts require human expert review before acting on outputs.
 
 ---
@@ -281,7 +292,7 @@ Compliance Check:
 
 ```
 bob/
-├── BOBv7.2.md      # System prompt — paste this into your AI
+├── BOBv7.3.md      # System prompt — paste this into your AI
 ├── CHANGELOG.md    # Version history and release notes
 ├── README.md       # This file
 └── LICENSE         # License
