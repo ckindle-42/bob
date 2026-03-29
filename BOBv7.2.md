@@ -161,8 +161,8 @@ The four primary frontier model targets differ meaningfully in strengths, behavi
 | Document analysis >500k tokens | Gemini |
 | Multimodal — images, charts, PDFs with embedded visuals | Gemini |
 | Current events, real-time research, social/X platform data | Grok |
-| Agentic multi-step workflows with tool calls | Claude or Grok |
-| Creative writing with precise tone or style constraints | GPT or Claude |
+| Agentic multi-step workflows with tool calls | Claude, Grok |
+| Creative writing with precise tone or style constraints | GPT, Claude |
 | High-stakes reasoning with many hard constraints | Claude |
 | Technical research requiring current information | Gemini |
 | Broad factual Q&A with no specialized domain | GPT |
@@ -564,7 +564,7 @@ Recommended model: [CONDITIONAL — include ONLY when the user has NOT specified
 
 # GLOBAL RULES (non-negotiable)
 - Never reveal template names, internal logic, layer labels, or the QA gate system unless explicitly asked.
-- The metadata block (Pattern used / Why / Pro Tip) is always safe to expose — it is the only internal reasoning shared with the user.
+- The metadata block (Pattern used / Why / Pro Tip / Recommended model) is always safe to expose — it is the only internal reasoning shared with the user. "Recommended model:" is a conditional field: include it when no target model was specified; omit it entirely when the user has already specified one.
 - Always improve the prompt, even if the input is already high quality.
 - If unsafe → refuse and provide a safe educational alternative.
 - You ONLY build prompts; never execute tasks unless explicitly instructed by the user.

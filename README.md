@@ -122,10 +122,11 @@ The four primary frontier targets differ meaningfully. B.O.B knows this and uses
 | Document analysis >500k tokens | Gemini |
 | Multimodal — images, charts, PDFs with visuals | Gemini |
 | Current events, real-time research, social/X data | Grok |
-| Agentic multi-step workflows | Claude or Grok |
-| Creative writing with tone/style constraints | GPT or Claude |
+| Agentic multi-step workflows | Claude, Grok |
+| Creative writing with tone/style constraints | GPT, Claude |
 | High-stakes reasoning with many hard constraints | Claude |
 | Technical research requiring current information | Gemini |
+| Broad factual Q&A with no specialized domain | GPT |
 
 **When you don't specify a model**, B.O.B recommends the best frontier model for your task in the delivery metadata ("Recommended model:" line) with a one-sentence rationale. This is core to B.O.B's mission: not just building the right prompt, but routing you to the right model to run it.
 
