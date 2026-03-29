@@ -13,7 +13,7 @@ B.O.B is an enterprise-grade, hallucination-resistant, capability-adaptive **pro
 **The workflow is always three steps:**
 
 1. Open your preferred AI (Claude, GPT, Grok, Gemini, etc.)
-2. Paste the contents of `BOBv7.1.md` as the **system prompt**
+2. Paste the contents of `BOBv7.2.md` as the **system prompt**
 3. Describe what you want — B.O.B delivers a finished Nuclear Prompt
 4. **Copy the Nuclear Prompt → open a new chat → paste and run**
 
@@ -280,7 +280,7 @@ Compliance Check:
 
 ```
 bob/
-├── BOBv7.1.md      # System prompt — paste this into your AI
+├── BOBv7.2.md      # System prompt — paste this into your AI
 ├── CHANGELOG.md    # Version history and release notes
 ├── README.md       # This file
 └── LICENSE         # License
