@@ -1,6 +1,6 @@
 # B.O.B — Better Output Builder
 
-**Version 7.1 TITANIUM+**
+**Version 7.2 TITANIUM+**
 
 B.O.B is an enterprise-grade, hallucination-resistant, capability-adaptive **prompt architect**. Paste the system prompt into any frontier AI model and it transforms your raw ideas into precision-engineered "Nuclear Prompts" — structured, unambiguous, copy-paste-ready instructions that another AI executes with maximum fidelity.
 
@@ -30,7 +30,8 @@ B.O.B is a **prompt factory**. It is stateless by design. The actual work always
 | *(none)* | **BASIC mode** — B.O.B infers smart defaults and generates immediately **(default)** |
 | `DETAIL` | B.O.B asks up to 3 clarifying questions before building |
 | `REFINE` | Paste your original Nuclear Prompt + downstream output + what went wrong — B.O.B diagnoses and rebuilds |
-| Target model name | e.g., "for Claude Sonnet 4.6" — triggers capability-profile optimization |
+| Target model name | e.g., "for Claude Sonnet 4.6" — triggers capability-profile optimization; primary targets: **Claude, ChatGPT, Gemini, Grok** |
+| *(no model specified)* | B.O.B recommends the best frontier model for your task and explains why |
 
 ### When to use each mode
 
@@ -85,7 +86,11 @@ B.O.B can fuse up to **3 templates** when a task has multiple dominant complexit
 
 ## Capability-Aware Optimization (Layer 3)
 
-B.O.B optimizes for what a model *can do*, not just what it's named — making the optimization durable across model generations. Capability profiles are authoritative. The model→profile table is an illustrative starting point that will drift as new models release.
+Layer 3 has two subsystems that work together:
+
+### 1. Capability Profiles (durable across model generations)
+
+B.O.B optimizes for what a model *can do*, not just what it's named. Capability profiles are authoritative. The model→profile table is an illustrative starting point that will drift as new models release.
 
 | Capability Profile | Optimization Strategy | Example Models |
 |---|---|---|
@@ -96,6 +101,33 @@ B.O.B optimizes for what a model *can do*, not just what it's named — making t
 | **E** — Agentic / Tool-Use Native | `<thinking>` scaffolding, tool-ordering rules, result validation | Claude 4.x, Grok 4.x, GPT-5.x |
 
 **Unknown model policy:** If the model is unlisted, B.O.B applies Profile A + B as a safe default and flags this assumption explicitly in the Pro Tip.
+
+### 2. Model Intelligence Reference (concrete per-model knowledge)
+
+The four primary frontier targets differ meaningfully. B.O.B knows this and uses it to recommend the right model when none is specified.
+
+| Model | Excels At | Behavioral Profile |
+|---|---|---|
+| **Claude** (Anthropic) | Multi-step reasoning, long-document analysis, strict instruction-following, legal/policy/compliance, agentic workflows | Methodical, structured, precise; follows complex multi-constraint instructions with high fidelity; least likely to silently skip a constraint |
+| **ChatGPT / GPT** (OpenAI) | Code generation and execution, data analysis, structured JSON output, creative writing, broad factual Q&A, tool integration | Direct, practical; strong format adherence and code synthesis; most reliable at strict schema output |
+| **Gemini** (Google) | Multimodal (images, video, audio, PDFs), 1M+ token context, search-grounded real-time info, multilingual tasks | Visually grounded; handles very large contexts natively; integrates current information via Google Search |
+| **Grok** (xAI) | Real-time info (X/Twitter), current events, social media analysis, extended reasoning, direct responses | Direct, less filtered; strong at reasoning under constraint; best when live data or blunt synthesis is required |
+
+**Task-to-Model Routing (when no model is specified):**
+
+| Task Type | Recommended Model |
+|---|---|
+| Legal, policy, compliance, contract analysis | Claude |
+| Code generation, debugging, data analysis with execution | GPT |
+| Document analysis >500k tokens | Gemini |
+| Multimodal — images, charts, PDFs with visuals | Gemini |
+| Current events, real-time research, social/X data | Grok |
+| Agentic multi-step workflows | Claude or Grok |
+| Creative writing with tone/style constraints | GPT or Claude |
+| High-stakes reasoning with many hard constraints | Claude |
+| Technical research requiring current information | Gemini |
+
+**When you don't specify a model**, B.O.B recommends the best frontier model for your task in the delivery metadata ("Recommended model:" line) with a one-sentence rationale. This is core to B.O.B's mission: not just building the right prompt, but routing you to the right model to run it.
 
 ---
 
@@ -185,6 +217,7 @@ Compliance Check:
 **Pattern used:** Long-Context Structured Extraction
 **Why this pattern:** 500-page document requires phased summarize → extract → answer to avoid context drift and hallucinated citations.
 **Pro Tip:** Claude Opus 4.6 (Profile A + E) — use XML-tagged context blocks for very large pastes and add `effort: high` to activate deeper chain-of-thought.
+*(Target model was specified — "Recommended model:" line omitted.)*
 
 ---
 

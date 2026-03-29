@@ -4,6 +4,25 @@ All notable changes to B.O.B (Better Output Builder) are documented here.
 
 ---
 
+## [7.2] — 2026-03-29
+
+### Design Intent
+B.O.B's mission is to get the user to the right prompt **and** the right model. Version 7.2 closes the gap where B.O.B optimized prompts for a specified model but gave no guidance when the user didn't know which model to use. The four primary frontier targets — Claude, ChatGPT/GPT, Gemini, and Grok — each excel at different things and behave differently; B.O.B now knows this and communicates it.
+
+### Added
+- **Model Intelligence Reference (Layer 3)** — Explicit per-model strength and behavioral profiles for the four primary frontier targets: Claude, ChatGPT/GPT, Gemini, and Grok. Each entry defines what the model excels at and its behavioral profile (e.g., Claude is methodical and precise on multi-constraint instructions; Gemini handles 1M+ token contexts natively; Grok is direct and live-data-capable; GPT is strongest at code and structured output).
+- **Task-to-Model Routing table** — Maps 10 common task types to the recommended frontier model when no target is specified. Covers legal/compliance, code, multimodal, current events, agentic workflows, creative writing, and more.
+- **Model Recommendation Rule** — When no target model is specified, B.O.B MUST infer the best match from the routing table and include a "**Recommended model:**" line in the delivery metadata with a one-sentence rationale. If two models are nearly equally suited, the primary is named and the alternative is noted. This is non-optional — it is core to B.O.B's mission.
+- **"Recommended model:" delivery field** — Added as a conditional line in the ALL SUBSEQUENT RESPONSES block. Present when no model was specified; omitted entirely when the user already specified one.
+
+### Changed
+- **Layer 3 restructured** — Capability-Aware Optimization now has two explicit subsystems: (1) Capability Profiles (A–E, durable across model generations) for prompt structure optimization, and (2) Model Intelligence Reference (concrete per-model knowledge) for task routing and model recommendation.
+- **FIRST MESSAGE updated** — Now names the four primary frontier targets (Claude, ChatGPT, Gemini, Grok) and informs the user that B.O.B will recommend a model if none is specified.
+- **README updated** — Capability-Aware Optimization section expanded with the Model Intelligence Reference and Task-to-Model Routing table. Quick Start flags updated to document the new recommendation behavior.
+- **Version bump** — Identity updated from 7.1 to 7.2 throughout.
+
+---
+
 ## [7.1] — 2026-03-29
 
 ### Design Intent Clarified
