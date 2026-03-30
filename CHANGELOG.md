@@ -4,6 +4,47 @@ All notable changes to B.O.B (Better Output Builder) are documented here.
 
 ---
 
+## [7.3] — 2026-03-29
+
+### Design Intent
+A world-class prompt engineer doesn't just structure instructions — they calibrate to the audience, scale complexity to the task, prime the model's response, demand intellectual honesty, ground claims in time, and architect multi-prompt workflows when a single prompt can't carry the load. Version 7.3 closes these gaps. B.O.B now generates prompts that adapt to who's reading the output, how hard the task actually is, and whether the model needs to think harder, push back, or chain multiple conversations.
+
+### Added
+- **3 new Titanium Doctrine laws:**
+  - **Law 8 — Intellectual Honesty:** Prompts instruct downstream models to disagree, push back, and flag flawed premises rather than optimize for pleasing the user.
+  - **Law 9 — Proportional Complexity:** Match prompt weight to task weight. Simple requests get lean prompts; complex requests get full architecture.
+  - **Law 10 — Temporal Awareness:** Prompts account for knowledge cutoffs. Time-sensitive tasks instruct the model to declare its knowledge boundary.
+- **Audience Calibration (Layer 1)** — Intent Reconstruction now extracts audience expertise level (Novice / Intermediate / Expert / Mixed) and calibrates vocabulary, scaffolding, and explanation depth accordingly.
+- **Task Complexity Tiers (Layer 1)** — New 4-tier classification (Simple / Moderate / Complex / Compound) with word-budget targets: Simple <150 words, Moderate <400, Complex <600, Compound = prompt chain.
+- **Temporal Sensitivity Detection (Layer 1)** — Flags tasks involving recent events, evolving standards, or time-sensitive data for temporal grounding.
+- **Complexity-Proportional Generation (Layer 2)** — Rules for scaling prompt weight by tier. Simple tasks get minimal scaffolding; Compound tasks get multi-prompt chains.
+- **Prompt Chaining (Layer 2)** — For Compound-tier tasks, B.O.B generates a numbered sequence of 2–4 self-contained prompts with explicit input/output contracts between steps.
+- **5 Advanced Optimization Techniques (Layer 3):**
+  - **Response Priming** — End prompts with the first line(s) of expected output to eliminate cold-start drift.
+  - **Reasoning Depth Control** — Scaled thinking instructions (step-by-step → deep thinking → edge-case consideration) keyed to task complexity and risk.
+  - **Anti-Sycophancy Directives** — Explicit pushback instructions for tasks where honest assessment matters more than validation.
+  - **Temporal Grounding** — Knowledge-cutoff awareness constraints for time-sensitive tasks.
+  - **Cognitive Load Management** — Structural rules for prompt information hierarchy (constraints first, bold critical items, limit to 5–7 hard constraints, numbered sequential steps).
+- **Task Decomposition & Workflow Architecture template** — 14th template. For compound multi-phase tasks with dependencies. Structures work into 2–5 explicit phases with input/output contracts.
+- **Structured Data Output template** — 15th template. For strict machine-parseable output (JSON, XML, CSV, YAML) with schema enforcement, gold-standard examples, and explicit default-value policies.
+- **6 new Failure Modes in taxonomy:**
+  - Sycophantic agreement (model validates flawed premises)
+  - Shallow reasoning (surface-level analysis, skips nuance)
+  - Temporal hallucination (fabricates recent events or states outdated facts as current)
+  - Audience mismatch (wrong vocabulary/complexity level for the reader)
+  - Premature closure (stops before completing all requested items)
+  - Instruction dilution (early constraints followed, later ones ignored)
+
+### Changed
+- **Layer 2 template mapping expanded** — Now includes Task Decomposition and Structured Data Output routing rules.
+- **Delivery metadata enriched** — All responses now include a "Complexity" line (Simple / Moderate / Complex / Compound). Compound-tier deliveries include a workflow overview.
+- **Known Limitations updated** — Added limitations for prompt chains (user friction), anti-sycophancy (not foolproof), and temporal grounding (cutoff uncertainty).
+- **Meta-Prompt template updated** — References 14 named templates (was 12).
+- **Engine version bumped** — Internal engine label updated from v7.1 to v7.2.
+- **Version bump** — Identity updated from 7.2 to 7.3 throughout.
+
+---
+
 ## [7.2] — 2026-03-29
 
 ### Design Intent
