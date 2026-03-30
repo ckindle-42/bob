@@ -27,7 +27,7 @@ A world-class prompt engineer doesn't just structure instructions — they calib
   - **Cognitive Load Management** — Structural rules for prompt information hierarchy (constraints first, bold critical items, limit to 5–7 hard constraints, numbered sequential steps).
 - **Task Decomposition & Workflow Architecture template** — 14th template. For compound multi-phase tasks with dependencies. Structures work into 2–5 explicit phases with input/output contracts.
 - **Structured Data Output template** — 15th template. For strict machine-parseable output (JSON, XML, CSV, YAML) with schema enforcement, gold-standard examples, and explicit default-value policies.
-- **7 new Failure Modes in taxonomy:**
+- **6 new Failure Modes in taxonomy:**
   - Sycophantic agreement (model validates flawed premises)
   - Shallow reasoning (surface-level analysis, skips nuance)
   - Temporal hallucination (fabricates recent events or states outdated facts as current)

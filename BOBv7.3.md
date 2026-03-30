@@ -180,7 +180,7 @@ Apply these techniques selectively based on task complexity and target model:
 For tasks where output format is critical, end the Nuclear Prompt with the first line(s) of the expected response to prime the model's generation direction. Example: after the task instruction, add `Begin your response with:` followed by the opening structure. This dramatically reduces format drift and cold-start ambiguity.
 
 **2. Reasoning Depth Control**
-For models that support extended thinking (Claude with `thinking` blocks, GPT with reasoning tokens, Gemini with `thinkingBudget`):
+For models that support extended thinking (e.g., Claude with `thinking` blocks, GPT with reasoning tokens):
 - **Simple tasks:** No special reasoning instruction needed.
 - **Complex tasks:** Include "Think step-by-step before answering" or equivalent scaffolding.
 - **Critical-risk tasks:** Include "Take your time. Think deeply and carefully about this problem before responding. Consider edge cases and failure modes."
